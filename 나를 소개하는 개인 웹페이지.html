@@ -1,0 +1,838 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Seohee's World</title>
+<style>
+:root {
+  --blue: #397fbd;
+  --deep: #244f7a;
+  --navy: #163653;
+  --sky: #dcecff;
+  --pale: #edf5ff;
+  --ink: #20364d;
+  --muted: #425b73;
+  --line: #b8d0e8;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #eaf3fc;
+  color: var(--ink);
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+  line-height: 1.75;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: auto;
+  padding: 0 26px;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(22,54,83,.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #789fc5;
+}
+
+.nav {
+  height: 66px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-family: Georgia, serif;
+  font-size: 18px;
+  letter-spacing: .08em;
+  color: white;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 22px;
+  font-size: 12px;
+  color: #e5f2ff;
+}
+
+nav a:hover { color: #b9dcff; }
+
+/* 첫 화면 */
+.hero {
+  min-height: 690px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 20%, #b9d8f5 0, transparent 27%),
+    radial-gradient(circle at 90% 80%, #c7e1f7 0, transparent 28%),
+    linear-gradient(135deg, #c9e0f7, #e6f1fc 55%, #d5e8f9);
+}
+
+.hero:before,
+.hero:after {
+  content: "";
+  position: absolute;
+  border: 1px solid #b9d7f1;
+  border-radius: 50%;
+  width: 430px;
+  height: 430px;
+  opacity: .35;
+}
+
+.hero:before {
+  left: -260px;
+  top: 50px;
+}
+
+.hero:after {
+  right: -270px;
+  bottom: -170px;
+  width: 560px;
+  height: 560px;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 70px 0;
+}
+
+.overline {
+  font-size: 11px;
+  letter-spacing: .28em;
+  color: #376f9f;
+  font-weight: bold;
+}
+
+.invite {
+  width: min(570px, 94vw);
+  margin: 28px auto 0;
+  padding: 42px 35px 38px;
+  background: #f5f9ff;
+  border: 2px solid #8db5da;
+  outline: 7px solid #b7d5f066;
+  box-shadow: 0 24px 70px #477ba522;
+  position: relative;
+}
+
+.invite:before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border: 1px solid #b8d0e8;
+  pointer-events: none;
+}
+
+.stamp {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  background: #dcecff;
+  display: grid;
+  place-items: center;
+  color: #244f7a;
+  font-size: 28px;
+  border: 1px dashed #8db5da;
+}
+
+.invite h1 {
+  font-family: Georgia, "Noto Serif KR", serif;
+  font-weight: 500;
+  color: #163653;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.35;
+  margin: 8px 0 14px;
+  letter-spacing: -.04em;
+}
+
+.invite h1 span { color: #397fbd; }
+
+.invite p {
+  font-size: 14px;
+  color: #344e68;
+  margin: 0 auto;
+  max-width: 390px;
+}
+
+.from {
+  margin-top: 26px;
+  color: #376f9f;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+}
+
+/* 초대 수락 버튼 */
+.enter {
+  display: inline-block;
+  margin-top: 27px;
+  padding: 14px 34px;
+  background: #245b83;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  border-radius: 6px;
+  box-shadow: 0 5px 14px #244f7a30;
+  transition: .2s;
+}
+
+.enter:hover {
+  background: #163f63;
+  transform: translateY(-2px);
+}
+
+.scribble {
+  position: absolute;
+  color: #7daed7;
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+
+.s1 { top: 80px; left: 13%; }
+.s2 { right: 13%; bottom: 95px; }
+
+.scroll {
+  margin-top: 28px;
+  color: #86a1b9;
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+
+/* 공통 섹션 */
+.section { padding: 88px 0; }
+
+.section-head {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: .24em;
+  color: #376f9f;
+  font-weight: bold;
+}
+
+.section-head h2 {
+  font-family: Georgia, "Noto Serif KR", serif;
+  font-weight: 500;
+  font-size: 34px;
+  color: var(--navy);
+  margin: 8px 0;
+}
+
+.section-head p {
+  font-size: 13px;
+  color: #43566c;
+  margin: 0;
+}
+
+/* 프로필 */
+.profile { background: #d9e9f8; }
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.paper {
+  background: #f6faff;
+  border: 1px solid #bdd3e9;
+  padding: 23px;
+  border-radius: 4px;
+  box-shadow: 0 8px 25px #426b8d0b;
+  position: relative;
+}
+
+.paper:before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: calc(50% - 22px);
+  width: 44px;
+  height: 11px;
+  background: #d5eaffaa;
+  transform: rotate(-3deg);
+}
+
+.paper small {
+  font-size: 10px;
+  letter-spacing: .16em;
+  color: #8ba5bc;
+}
+
+.paper strong {
+  display: block;
+  color: var(--deep);
+  font-size: 17px;
+  margin-top: 7px;
+}
+
+.paper p {
+  font-size: 12px;
+  color: #344e68;
+  margin: 3px 0 0;
+}
+
+/* 자기소개 편지 */
+.letter-section { background: #e4effa; }
+
+.letter {
+  max-width: 760px;
+  margin: auto;
+  background: #f8fbff;
+  padding: 42px 48px;
+  border: 1px solid #bdd3e9;
+  box-shadow: 0 15px 40px #426b8d10;
+  position: relative;
+}
+
+.letter:after {
+  content: "✉";
+  position: absolute;
+  right: 25px;
+  top: 18px;
+  font-size: 24px;
+  color: #a8cbe9;
+}
+
+.letter .dear {
+  font-family: Georgia, serif;
+  color: #376f9f;
+  font-style: italic;
+}
+
+.letter p {
+  font-size: 14px;
+  color: #344e68;
+}
+
+.letter .sign {
+  font-family: Georgia, serif;
+  color: #376f9f;
+  text-align: right;
+  font-style: italic;
+  margin-top: 25px;
+}
+
+/* 취향 카드 */
+.taste { background: #d7e8f8; }
+
+.taste-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.taste-card {
+  background: #f3f8ff;
+  border: 1px solid #b4cde6;
+  padding: 25px 20px;
+  text-align: center;
+  transition: .2s;
+}
+
+.taste-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px #4b82ad17;
+}
+
+.emoji {
+  font-size: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 10px;
+}
+
+/* 짱구 얼굴 사진 */
+.shin-card {
+  background: #eaf3fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.shin-image {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 0 auto 10px;
+  border-radius: 14px;
+  filter: drop-shadow(0 5px 5px #24476520);
+}
+
+.taste-card h3 {
+  color: #1d466c;
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.taste-card p {
+  font-size: 12px;
+  color: #344e68;
+  margin: 0;
+}
+
+.little-note {
+  text-align: center;
+  color: #8aa4bb;
+  font-family: Georgia, serif;
+  font-style: italic;
+  margin-top: 22px;
+  font-size: 14px;
+}
+
+/* 강점 */
+.strengths { background: #dceafa; }
+
+.strength-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.strength-card {
+  background: #f5f9ff;
+  padding: 25px;
+  border: 1px solid #b8d0e8;
+  text-align: center;
+}
+
+.strength-card .number {
+  font-family: Georgia, serif;
+  color: #91b9dc;
+  font-size: 25px;
+}
+
+.strength-card h3 {
+  color: var(--navy);
+  font-size: 17px;
+  margin: 7px 0;
+}
+
+.strength-card p {
+  font-size: 12px;
+  color: #40556b;
+  margin: 0;
+}
+
+/* 미래 목표 */
+.goal {
+  background: linear-gradient(145deg, #244f7a, #397fbd);
+  color: white;
+}
+
+.goal .section-head h2 { color: white; }
+.goal .section-head p { color: #d9eafa; }
+.goal .eyebrow { color: #c3e1fb; }
+
+.goal-card {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff12;
+  border: 1px solid #ffffff4a;
+  padding: 38px;
+  text-align: center;
+}
+
+.goal-card .star {
+  font-size: 28px;
+  color: #d8edff;
+}
+
+.goal-card h3 {
+  font-family: Georgia, "Noto Serif KR", serif;
+  font-weight: 500;
+  font-size: 27px;
+  margin: 10px 0;
+}
+
+.goal-card p {
+  font-size: 13px;
+  color: #e2f0fc;
+  max-width: 590px;
+  margin: 0 auto;
+}
+
+.goal-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 22px;
+}
+
+.goal-tags span {
+  border: 1px solid #ffffff70;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 11px;
+  color: #eff8ff;
+}
+
+/* 하단 */
+footer {
+  text-align: center;
+  padding: 32px 15px;
+  background: #163653;
+  color: #c6dced;
+  font-size: 11px;
+}
+
+footer strong {
+  display: block;
+  font-family: Georgia, serif;
+  letter-spacing: .16em;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+/* 모바일 화면 */
+@media(max-width:700px) {
+  nav {
+    gap: 11px;
+    font-size: 10px;
+  }
+
+  nav a:nth-child(2),
+  nav a:nth-child(4) {
+    display: none;
+  }
+
+  .hero { min-height: 620px; }
+  .invite { padding: 38px 23px; }
+  .scribble { display: none; }
+
+  .section { padding: 65px 0; }
+
+  .profile-grid,
+  .taste-grid,
+  .strength-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .letter { padding: 34px 25px; }
+  .section-head h2 { font-size: 29px; }
+
+  .shin-image,
+  .emoji {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#home">SEOHEE'S WORLD</a>
+    <nav>
+      <a href="#profile">PROFILE</a>
+      <a href="#letter">ABOUT</a>
+      <a href="#taste">MY TASTE</a>
+      <a href="#strengths">STRENGTHS</a>
+      <a href="#goal">DREAM</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- 첫 페이지: 초대장 -->
+<section class="hero" id="home">
+  <div class="scribble s1">♡</div>
+  <div class="scribble s2">✧</div>
+
+  <div class="hero-inner wrap">
+    <div class="overline">A LITTLE INVITATION FROM SEOHEE</div>
+
+    <div class="invite">
+      <div class="stamp">♡</div>
+      <div class="overline">YOU ARE INVITED</div>
+
+      <h1>
+        어서 오세요,<br>
+        <span>서희의 작은 세계</span>에
+      </h1>
+
+      <p>
+        제가 좋아하는 것들, 소중하게 생각하는 마음,<br>
+        그리고 앞으로 그려갈 꿈을 소개할게요.
+      </p>
+
+      <div class="from">With love, Seohee</div>
+
+      <a class="enter" href="#profile">
+        초대 수락하기&nbsp; →
+      </a>
+    </div>
+
+    <div class="scroll">
+      SCROLL TO EXPLORE · 천천히 둘러보세요
+    </div>
+  </div>
+</section>
+
+<!-- 프로필 -->
+<section class="section profile" id="profile">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">01 · THE INVITATION CARD</div>
+      <h2>먼저, 저를 소개할게요</h2>
+      <p>초대장에 적힌 저의 작은 프로필</p>
+    </div>
+
+    <div class="profile-grid">
+      <div class="paper">
+        <small>MY NAME</small>
+        <strong>민서희</strong>
+        <p>Min Seo Hee</p>
+      </div>
+
+      <div class="paper">
+        <small>MY SCHOOL</small>
+        <strong>단국대학교 간호학과</strong>
+        <p>2학년 재학 중</p>
+      </div>
+
+      <div class="paper">
+        <small>MY FUTURE</small>
+        <strong>응급실 간호사</strong>
+        <p>단국대학교병원에서의 꿈</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 자기소개 편지 -->
+<section class="section letter-section" id="letter">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">02 · A LETTER FROM ME</div>
+      <h2>저에 대해 조금 더 이야기할게요</h2>
+      <p>민서희가 전하는 짧은 편지</p>
+    </div>
+
+    <div class="letter">
+      <div class="dear">Dear you,</div>
+
+      <p>
+        안녕하세요. 단국대학교 간호학과 2학년에 재학 중인 민서희입니다.
+      </p>
+
+      <p>
+        저는 새로운 것을 배우는 것을 좋아하고,
+        사람들에게 도움을 주는 일에서 보람을 느낍니다.
+        아직 배워가는 과정에 있지만,
+        매일 조금씩 성장하며 누군가에게 힘이 되는 사람이 되고 싶어요.
+      </p>
+
+      <p>
+        제가 꿈꾸는 간호사는 환자가 가장 필요로 하는 순간
+        곁을 지켜주는 사람입니다.
+        그래서 책임감과 공감, 협업을 소중히 여기며
+        간호사의 길을 걸어가고 있습니다.
+      </p>
+
+      <p>
+        이곳에서 저의 취향과 꿈을 편하게 둘러봐 주세요.
+        반가운 마음으로 여러분을 초대합니다!
+      </p>
+
+      <div class="sign">Sincerely, Seohee ♡</div>
+    </div>
+  </div>
+</section>
+
+<!-- 취향과 관심사 -->
+<section class="section taste" id="taste">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">03 · MY LITTLE FAVORITES</div>
+      <h2>제가 좋아하는 것들</h2>
+      <p>저의 일상을 채워주는 작은 취향의 방</p>
+    </div>
+
+    <div class="taste-grid">
+
+      <div class="taste-card">
+        <span class="emoji">🧶</span>
+        <h3>뜨개질</h3>
+        <p>
+          한 코씩 천천히 만들어 가는 시간.<br>
+          작은 완성에서 기쁨을 느껴요.
+        </p>
+      </div>
+
+      <div class="taste-card">
+        <span class="emoji">🎧</span>
+        <h3>음악 감상</h3>
+        <p>
+          좋아하는 노래와 함께<br>
+          잠시 쉬어 가는 시간을 좋아해요.
+        </p>
+      </div>
+
+      <div class="taste-card">
+        <span class="emoji">🎮</span>
+        <h3>게임</h3>
+        <p>
+          재미있는 세계에 푹 빠져<br>
+          즐겁게 몰입하는 걸 좋아해요.
+        </p>
+      </div>
+
+      <div class="taste-card">
+        <span class="emoji">💙</span>
+        <h3>푸른색</h3>
+        <p>
+          맑고 차분한 느낌을 주는<br>
+          파란색을 가장 좋아해요.
+        </p>
+      </div>
+
+      <div class="taste-card shin-card">
+        <img
+          class="shin-image"
+          src="shinchan_face.png"
+          alt="짱구 얼굴 이미지"
+        >
+        <h3>짱구</h3>
+        <p>
+          엉뚱하고 귀여운 매력에<br>
+          기분이 좋아져요.
+        </p>
+      </div>
+
+      <div class="taste-card">
+        <span class="emoji">🎀</span>
+        <h3>귀엽고 예쁜 것</h3>
+        <p>
+          소소하지만 사랑스러운 것들을<br>
+          발견하는 걸 좋아해요.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="little-note">
+      little things make me happy ✧
+    </div>
+  </div>
+</section>
+
+<!-- 강점 -->
+<section class="section strengths" id="strengths">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">04 · WHAT MAKES ME, ME</div>
+      <h2>저를 이루는 세 가지 마음</h2>
+      <p>간호사로 성장할 때에도 잊지 않을 저의 강점</p>
+    </div>
+
+    <div class="strength-grid">
+
+      <div class="strength-card">
+        <div class="number">01</div>
+        <h3>책임감 · Responsibility</h3>
+        <p>
+          맡은 일을 끝까지 해내고<br>
+          꾸준하고 성실하게 노력합니다.
+        </p>
+      </div>
+
+      <div class="strength-card">
+        <div class="number">02</div>
+        <h3>공감 · Empathy</h3>
+        <p>
+          상대방의 입장에서 생각하고<br>
+          마음을 살피며 소통합니다.
+        </p>
+      </div>
+
+      <div class="strength-card">
+        <div class="number">03</div>
+        <h3>협업 · Teamwork</h3>
+        <p>
+          서로의 의견을 존중하고<br>
+          함께 더 나은 방법을 찾아갑니다.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 미래 목표 -->
+<section class="section goal" id="goal">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">05 · A LETTER TO MY FUTURE</div>
+      <h2>앞으로 제가 걸어갈 길</h2>
+      <p>미래의 민서희에게 보내는 약속</p>
+    </div>
+
+    <div class="goal-card">
+      <div class="star">✧ &nbsp; MY DREAM &nbsp; ✧</div>
+
+      <h3>단국대학교병원 응급실 간호사</h3>
+
+      <p>
+        오랫동안 꾸준히 배우고 노력하며,
+        긴급한 순간에도 침착하고 정확하게 환자를 돌보는
+        간호사가 되고 싶습니다.
+        환자와 보호자에게는 믿음을,
+        함께 일하는 동료에게는 든든함을 주며,
+        필요한 순간에 꼭 쓰임이 있는 사람이 되겠습니다.
+      </p>
+
+      <div class="goal-tags">
+        <span>꾸준함</span>
+        <span>전문성</span>
+        <span>헌신</span>
+        <span>봉사</span>
+        <span>따뜻한 돌봄</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <strong>THANK YOU FOR VISITING SEOHEE'S WORLD</strong>
+  저의 작은 세계에 방문해 주셔서 감사합니다.
+  오늘도 따뜻한 하루 보내세요 ♡
+</footer>
+
+</body>
+</html>
